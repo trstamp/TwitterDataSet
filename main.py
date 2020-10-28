@@ -69,11 +69,22 @@ def centralities():
     plt.ylabel(" Num of nodes ")
     plt.show()
 
+    file.close()
+
+def triads():
+    # Read file
+    file = gzip.open('twitter_combined.txt.gz')
+    Graphtype = networkx.DiGraph()
+    graph = networkx.read_edgelist(file, create_using=Graphtype, nodetype=int, data=('weight', float), )
+
     # Triadic Census
     triadic = networkx.triadic_census(graph)
-    print(triadic)
     
+    print(triadic)
+
     file.close()
+
 
 degAndCope()
 centralities()
+triads()
